@@ -8,7 +8,7 @@ const PORT = 3000;
 const createPath = (page) => path.resolve('pages', `${page}.html`);
 
 app.get('/', (req, res) => {
-	res.sendFile(createPath('index'));
+	res.sendFile(createPath('main'));
 });
 
 app.get('/game', (req, res) => {
