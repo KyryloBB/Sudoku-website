@@ -5,7 +5,9 @@ const fs = require('node:fs');
 const app = express();
 const PORT = 3000;
 
-const createPath = (page) => path.resolve('pages', `${page}.html`);
+const createPath = (page) => path.resolve('public', 'pages', `${page}.html`);
+
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
 	res.sendFile(createPath('main'));
