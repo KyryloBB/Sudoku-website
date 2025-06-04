@@ -8,6 +8,7 @@ const PORT = 3000;
 const createPath = (page) => path.resolve('public', 'pages', `${page}.html`);
 
 app.use(express.static('public'));
+app.use(express.static('src'));
 
 app.get('/', (req, res) => {
 	res.sendFile(createPath('main'));

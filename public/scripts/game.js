@@ -1,3 +1,3 @@
-import { sudokuGenerator } from '../scripts/SudokuGenerator.js';
+import { sudokuGenerator } from '/SudokuGenerator.js';
 
 sudokuGenerator();
