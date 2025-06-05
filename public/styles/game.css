@@ -50,6 +50,18 @@ body {
 	margin-bottom: 0.5vmin;
 }
 
+.cell.filled {
+	background-color: #d9d9d9;
+}
+
+.cell.highlighted {
+	background-color: #ebd914;
+}
+
+.cell.selected {
+	background-color: #d49e16;
+}
+
 .numbers {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
