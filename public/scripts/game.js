@@ -1,3 +1,4 @@
-import { sudokuGenerator } from '/SudokuGenerator.js';
+import { Sudoku } from '/sudoku.js';
 
-sudokuGenerator();
+const sudoku = new Sudoku();
+console.table(sudoku.grid);

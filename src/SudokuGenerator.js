@@ -24,7 +24,7 @@ const resolveSudoku = (grid) => {
 	}
 };
 
-const findEmpty = (grid) => {
+export const findEmpty = (grid) => {
 	for (let row = 0; row < gridSize; row++) {
 		for (let column = 0; column < gridSize; column++) {
 			if (grid[row][column] === null) return { row, column };
