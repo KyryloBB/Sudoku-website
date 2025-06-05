@@ -1,8 +1,9 @@
-import { gridSize } from './Utilities.js';
+import { gridSize, boxSize } from './Utilities.js';
 
 export const sudokuGenerator = () => {
 	const sudoku = createEmptyGrid();
-	resolveSudoku(grid);
+	resolveSudoku(sudoku);
+	return removeCells(sudoku);
 };
 
 const createEmptyGrid = () => {
@@ -63,4 +64,28 @@ const validateRow = (grid, row, column, value) => {
 	return true;
 };
 
-console.log('Hi');
+const validateBox = (grid, row, column, value) => {
+	const firstRowInBox = row - (row % boxSize);
+	const firstColumnInBox = column - (column % boxSize);
+	for (let iRow = firstRowInBox; iRow < firstRowInBox + boxSize; iRow++) {
+		for (let iColumn = firstColumnInBox; iColumn < firstColumnInBox + boxSize; iColumn++) {
+			if (grid[iRow][iColumn] === value && iRow !== row && iColumn !== column) return false;
+		}
+	}
+	return true;
+};
+
+const removeCells = (grid) => {
+	const difficulty = 30;
+	const resultGrid = [...grid].map((row) => [...row]);
+	let i = 0;
+	while (i < difficulty) {
+		const row = Math.floor(Math.random() * gridSize);
+		const column = Math.floor(Math.random() * gridSize);
+		if (resultGrid[row][column] !== null) {
+			resultGrid[row][column] = null;
+			i++;
+		}
+	}
+	return resultGrid;
+};
