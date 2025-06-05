@@ -40,6 +40,16 @@ body {
 	cursor: pointer;
 }
 
+.cell:nth-child(3),
+.cell:nth-child(6) {
+	margin-right: 0.5vmin;
+}
+
+.cell:nth-child(19),
+.cell:nth-child(46) {
+	margin-bottom: 0.5vmin;
+}
+
 .numbers {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
