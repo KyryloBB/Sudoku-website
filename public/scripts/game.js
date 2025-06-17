@@ -10,6 +10,8 @@ let selectedCell;
 const init = () => {
 	fillCells();
 	initCellsEvents();
+	initNumbers();
+	initDeleter();
 };
 
 const fillCells = () => {
@@ -78,6 +80,38 @@ const highlightBoxBy = (index) => {
 			cells[cellIndex].classList.add('highlighted');
 		}
 	}
+};
+
+const initNumbers = () => {
+	const numbers = document.querySelectorAll('.number');
+	numbers.forEach((number) => {
+		number.addEventListener('click', () => onNumberClick(parseInt(number.innerHTML)));
+	});
+};
+
+const onNumberClick = (number) => {
+	if (!selectedCell) return;
+	if (selectedCell.classList.contains('filled')) return;
+	setValueInSelectedCell(number);
+};
+
+const setValueInSelectedCell = (value) => {
+	const { row, column } = convertIndexToPosition(selectedCellIndex);
+	sudoku.grid[row][column] = value;
+	selectedCell.innerHTML = value;
+};
+
+const initDeleter = () => {
+	const remover = document.querySelector('.delete');
+	remover.addEventListener('click', () => onDeleteClick());
+};
+
+const onDeleteClick = () => {
+	if (!selectedCell) return;
+	if (selectedCell.classList.contains('filled')) return;
+	const { row, column } = convertIndexToPosition(selectedCellIndex);
+	selectedCell.innerHTML = '';
+	sudoku.grid[row][column] = null;
 };
 
 init();
