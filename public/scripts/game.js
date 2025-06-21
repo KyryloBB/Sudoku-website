@@ -115,3 +115,19 @@ const onDeleteClick = () => {
 };
 
 init();
+
+const sendSudoku = async () => {
+	const currentGrid = sudoku.grid;
+	const response = await fetch('/check', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ currentGrid }),
+	});
+
+	const data = await response.json();
+	window.location.href = data.redirect;
+};
+
+document.getElementById('checkButton').addEventListener('click', sendSudoku);
