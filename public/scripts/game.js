@@ -130,4 +130,7 @@ const sendSudoku = async () => {
 	window.location.href = data.redirect;
 };
 
-document.getElementById('checkButton').addEventListener('click', sendSudoku);
+document.getElementById('checkButton').addEventListener('click', () => {
+	if (!sudoku.hasEmptyCells()) sendSudoku();
+	else alert('Заповніть усі клітинки судоку перед перевіркою');
+});
