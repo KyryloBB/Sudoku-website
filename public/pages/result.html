@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Результат</title>
+	</head>
+	<body>
+		<h1 id="result"></h1>
+
+		<script>
+			const params = new URLSearchParams(window.location.search);
+			const isValid = params.get('valid') === 'true';
+
+			document.getElementById('result').textContent = isValid
+				? "Ви правильно розв'язали судоку!"
+				: 'Рішення неправильне.';
+		</script>
+	</body>
+</html>

@@ -42,7 +42,7 @@ const getRandomNumbers = () => {
 	return numbers;
 };
 
-export const validate = (grid, row, column, value) => {
+const validate = (grid, row, column, value) => {
 	return (
 		validateColumn(grid, row, column, value) &&
 		validateRow(grid, row, column, value) &&
@@ -50,21 +50,21 @@ export const validate = (grid, row, column, value) => {
 	);
 };
 
-export const validateColumn = (grid, row, column, value) => {
+const validateColumn = (grid, row, column, value) => {
 	for (let iRow = 0; iRow < gridSize; iRow++) {
 		if (grid[iRow][column] === value && iRow !== row) return false;
 	}
 	return true;
 };
 
-export const validateRow = (grid, row, column, value) => {
+const validateRow = (grid, row, column, value) => {
 	for (let iColumn = 0; iColumn < gridSize; iColumn++) {
 		if (grid[row][iColumn] === value && iColumn !== column) return false;
 	}
 	return true;
 };
 
-export const validateBox = (grid, row, column, value) => {
+const validateBox = (grid, row, column, value) => {
 	const firstRowInBox = row - (row % boxSize);
 	const firstColumnInBox = column - (column % boxSize);
 	for (let iRow = firstRowInBox; iRow < firstRowInBox + boxSize; iRow++) {
