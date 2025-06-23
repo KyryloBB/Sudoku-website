@@ -7,24 +7,6 @@
 		<link rel="stylesheet" href="/styles/main.css" />
 	</head>
 	<body>
-		<button class="start-button" onclick="showDifficulty()">Почати гру</button>
-
-		<div class="difficulty-buttons" id="difficultyButtons">
-			<button class="difficulty-button" onclick="selectDifficulty('easy')">Легко</button>
-			<button class="difficulty-button" onclick="selectDifficulty('medium')">Середньо</button>
-			<button class="difficulty-button" onclick="selectDifficulty('hard')">Тяжко</button>
-		</div>
-
-		<script>
-			function showDifficulty() {
-				document.getElementById('difficultyButtons').style.display = 'flex';
-				document.querySelector('.start-button').style.display = 'none';
-			}
-
-			function selectDifficulty(level) {
-				// Перенаправлення на маршрут сервера з параметром складності
-				window.location.href = `/game?level=${level}`;
-			}
-		</script>
+		<button class="start-button" onclick="location.href='/game'">Почати гру</button>
 	</body>
 </html>
