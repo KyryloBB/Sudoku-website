@@ -117,17 +117,26 @@ const onDeleteClick = () => {
 init();
 
 const sendSudoku = async () => {
-	const currentGrid = sudoku.grid;
-	const response = await fetch('/check', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ currentGrid }),
-	});
+	try {
+		const currentGrid = sudoku.grid;
+		const response = await fetch('/check', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ currentGrid }),
+		});
 
-	const data = await response.json();
-	window.location.href = data.redirect;
+		if (!response.ok) {
+			throw new Error(`Server responded with status ${response.status}`);
+		}
+
+		const data = await response.json();
+		window.location.href = data.redirect;
+	} catch (error) {
+		console.error('Помилка при надсиланні судоку', error);
+		alert(`Виникла помилка при надсиланні судоку ! Спробуйте пізніше.\n ${error.message}`);
+	}
 };
 
 document.getElementById('checkButton').addEventListener('click', () => {
