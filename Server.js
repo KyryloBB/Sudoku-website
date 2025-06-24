@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 const fs = require('node:fs');
 const checkSudoku = require('./src/checkSudoku');
+const createCheckSudokuProxy = require('./src/cachingProxy');
 
 const app = express();
 const PORT = 3000;
+const cachedCheckSudoku = createCheckSudokuProxy(checkSudoku, 100);
 
 const createPath = (page) => path.resolve('public', 'pages', `${page}.html`);
 
@@ -26,7 +28,7 @@ app.get('/game/result', (req, res) => {
 
 app.post('/check', (req, res) => {
 	const { currentGrid } = req.body;
-	const isValid = checkSudoku(currentGrid);
+	const isValid = cachedCheckSudoku(currentGrid);
 	const redirectUrl = `/game/result?valid=${isValid}`;
 	res.json({ redirect: redirectUrl });
 });
